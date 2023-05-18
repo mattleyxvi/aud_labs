@@ -1,0 +1,76 @@
+using System.Collections;
+void display(ArrayList arrList, string name)
+{
+    Console.Write(name + ":");
+    foreach (var x in arrList)
+    {
+        Console.Write("{0} ", x);
+    }
+    Console.WriteLine();
+}
+var arrList = new ArrayList();
+while (true)
+{
+    Console.WriteLine("1. Add\n" +
+        "2. AddRange\n" +
+        "3. Clear\n" +
+        "4. Contains\n" +
+        "5. IndexOf\n" +
+        "6. Remove\n" +
+        "7. Sort\n" +
+        "8. Insert\n" +
+        "9. Reverse");
+
+    string method = Console.ReadLine();
+
+    switch (method)
+    {
+        case "1":
+            Console.WriteLine("Введите элемент");
+            arrList.Add(Console.ReadLine());
+            break;
+        case "2":
+            Console.WriteLine("Введите элементы, которые хотите добавить в коллекцию (конец - пустая строка)");
+            var extraArrList = new ArrayList();
+            for (string x = Console.ReadLine(); x != ""; x = Console.ReadLine())
+            {
+                extraArrList.Add(x);
+            }
+            arrList.AddRange(extraArrList);
+            break;
+        case "3":
+            arrList.Clear();
+            break;
+        case "4":
+            Console.WriteLine("Укажите элемент");
+            Console.WriteLine(arrList.Contains(Console.ReadLine()));
+            break;
+        case "5":
+            Console.WriteLine("Укажите индекс");
+            Console.WriteLine(arrList.IndexOf(Console.ReadLine()));
+            break;
+        case "6":
+            Console.WriteLine("Укажите элемент");
+            arrList.Remove(Console.ReadLine());
+            break;
+        case "7":
+            arrList.Sort();
+            break;
+        case "8":
+            Console.WriteLine("Укажите индекс");
+            int index = int.Parse(Console.ReadLine());
+            Console.WriteLine("Укажите элемент");
+            arrList.Insert(index, Console.ReadLine());
+            break;
+        case "9":
+            arrList.Reverse();
+            break;
+        default:
+            Console.WriteLine("Что-то непонятное.");
+            break;
+    }
+    display(arrList, "arrayList");
+    Console.WriteLine("Нажмите любую кнопку");
+    Console.ReadKey();
+    Console.Clear();
+}
