@@ -1,0 +1,109 @@
+using System.Collections;
+void display(List<string> List, string name)
+{
+    Console.Write(name + ":");
+    foreach (var x in List)
+    {
+        Console.Write("{0} ", x);
+    }
+    Console.WriteLine();
+}
+var list = new List<string>();
+while (true)
+{
+    Console.WriteLine(
+        "1. Add\n" +
+        "2. AddRange\n" +
+        "3. Insert\n" +
+        "4. Remove\n" +
+        "5. RemoveAt\n" +
+        "6. Sort\n" +
+        "7. Reverse\n" +
+        "8. GetRange\n" +
+        "9. IndexOf");
+
+    string method = Console.ReadLine();
+
+    switch (method)
+    {
+        case "1":
+            {
+                Console.WriteLine("Введите элемент");
+                list.Add(Console.ReadLine());
+                break;
+            }
+        case "2":
+            {
+                Console.WriteLine("Введите элементы, которые хотите добавить в коллекцию (чтобы прекратить ввод - введите пустую строку)");
+                var extraList = new List<string>();
+                for (string x = Console.ReadLine(); x != ""; x = Console.ReadLine())
+                {
+                    extraList.Add(x);
+                }
+                list.AddRange(extraList);
+                break;
+            }
+        case "3":
+            {
+                Console.WriteLine("Укажите элемент");
+                string element = Console.ReadLine();
+                Console.WriteLine("Укажите позицию, на которую будет поставлен элемент");
+                int index = int.Parse(Console.ReadLine());
+
+                if (index <= list.Count)
+                    list.Insert(index, element);
+                else
+                    list.Add(element);
+                break;
+            }
+        case "4":
+            {
+                Console.WriteLine("Укажите элемент");
+                list.Remove(Console.ReadLine());
+                break;
+            }
+        case "5":
+            {
+                Console.WriteLine("Укажите индекс");
+                list.RemoveAt(int.Parse(Console.ReadLine()));
+                break;
+            }
+        case "6":
+            {
+                list.Sort();
+                break;
+            }
+        case "7":
+            {
+                list.Reverse();
+                break;
+            }
+        case "8":
+            {
+                Console.WriteLine("Укажите индекс, с которого начинается копироварние");
+                int index = int.Parse(Console.ReadLine());
+                Console.WriteLine("Укажите кол-во элементов в диапазоне");
+                int count = int.Parse(Console.ReadLine());
+
+                var newList = list.GetRange(index, count);
+                display(newList, "newList");
+                break;
+            }
+        case "9":
+            {
+                Console.WriteLine("Укажите элемент");
+                string item = Console.ReadLine();
+                Console.WriteLine("Index: {0}", list.IndexOf(item));
+                break;
+            }
+        default:
+            {
+                Console.WriteLine("Что-то непонятное.");
+                break;
+            }
+    }
+    display(list, "list");
+    Console.WriteLine("Нажмите любую кнопку");
+    Console.ReadKey();
+    Console.Clear();
+}
