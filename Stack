@@ -1,0 +1,93 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
+
+void display(string[] stack, string name)
+{
+    Console.Write(name + ":");
+    for (int i = 0; i < stack.Length; i++)
+    {
+        Console.Write("\t{0}", stack[i]);
+    }
+    Console.WriteLine();
+}
+
+
+var stack = new Stack<string>();
+while (true)
+{
+    Console.WriteLine(
+        "1. Push\n" +
+        "2. Pop\n" +
+        "3. Peek\n" +
+        "4. Clear\n" +
+        "5. Contains\n" +
+        "6. ToArray\n" +
+        "7. TryPeek\n" +
+        "8. TryPop\n"
+        );
+
+    string method = Console.ReadLine();
+
+    switch (method)
+    {
+        case "1":
+            {
+                Console.WriteLine("Укажите элемент");
+                stack.Push(Console.ReadLine());
+                break;
+            }
+        case "2":
+            {
+                if (stack.Count != 0)
+                    stack.Pop();
+                else
+                    Console.WriteLine("Стэк пустой");
+                break;
+            }
+        case "3":
+            {
+                if (stack.Count != 0)
+                    Console.WriteLine("Peek: {0}", stack.Peek());
+                else
+                    Console.WriteLine("Стэк пустой");
+                break;
+            }
+        case "4":
+            {
+                stack.Clear();
+                break;
+            }
+        case "5":
+            {
+                Console.WriteLine("Укажите элемент");
+                Console.WriteLine(stack.Contains(Console.ReadLine()));
+                break;
+            }
+        case "6":
+            {
+                Console.WriteLine("Тип полученного объекта: {0}", stack.ToArray().GetType());
+                break;
+            }
+        case "7":
+            {
+                Console.WriteLine(stack.TryPeek(out var result));
+                Console.WriteLine("Результат: {0}", result);
+                break;
+            }
+        case "8":
+            {
+                Console.WriteLine(stack.TryPop(out var result));
+                Console.WriteLine("Результат: {0}", result);
+                break;
+            }
+        default:
+            {
+                Console.WriteLine("Что это?");
+                break;
+            }
+    }
+    display(stack.ToArray(), "stack");
+    Console.WriteLine("Нажмите любую кнопку");
+    Console.ReadKey();
+    Console.Clear();
+}
