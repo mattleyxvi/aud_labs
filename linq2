@@ -1,0 +1,29 @@
+Console.WriteLine("Введите количество вводимых чисел");
+int count = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine(count);
+Console.WriteLine("Вводите числа");
+List<int> numbers = new List<int>();
+for (int i = 0; i<count; i++)
+{
+    numbers.Add(Convert.ToInt32(Console.ReadLine()));
+}
+var positiveNumbers = numbers.Where(n => n > 0);
+Console.WriteLine("Положительные числа:");
+foreach (var num in positiveNumbers)
+{
+    Console.Write(num + " ");
+}
+Console.WriteLine();
+// Сумма отрицательных чисел
+var negativeNumbersSum = numbers.Where(n => n < 0).Sum();
+Console.WriteLine("Сумма отрицательных чисел: " + negativeNumbersSum);
+// Количество чисел, кратных 5
+var numbersDivisibleBy5Count = numbers.Count(n => n % 5 == 0);
+Console.WriteLine("Количество чисел, кратных 5: " + numbersDivisibleBy5Count);
+// Удаление чётных чисел
+numbers.RemoveAll(n => n % 2 == 0);
+Console.WriteLine("Список после удаления чётных чисел:");
+foreach (var num in numbers)
+{
+    Console.Write(num + " ");
+}
